@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{layouts/layout :: layout-enchere( 
+					titrePage=~{:: title},
+					contenuPage=~{:: main},
+					ressourcesSupp=~{:: #ressources-css}
+					)}">
+
+<head>
+	<title data-th-text="#{Index.title}"></title>
+	<th:block id="ressources-css">
+		<link rel="stylesheet" href="/css/creerArticle.css">
+		<link rel="stylesheet" href="/css/tp-error.css">
+	</th:block>
+</head>
+<body>
+	<main class="center-main">
+		<div class="container">
+		    <h2 data-th-text="#{form.article.titre}">Nouvelle vente</h2> 
+		    <div data-th-replace="~{fragments/fragment-article-form:: frag-article-form('/articles/creer')}">
+		    </div>
+	    </div>
+	</main>
+</body>
+</html>

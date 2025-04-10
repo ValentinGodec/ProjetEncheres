@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{layouts/layout :: layout-enchere( 
+					titrePage=~{:: title},
+					contenuPage=~{:: main},
+					ressourcesSupp=~{:: #ressources-css}
+					)}">
+
+<head>
+<!-- Accueil comme titre de page -->
+<title data-th-text="#{Profil.titreForm.creer}"></title>
+
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/profil.css}">
+</th:block>
+</head>
+<body>
+	<main>
+		<div data-th-replace="~{fragments/fragment-profil-form :: frag-profil-form('creer')}"></div>	
+	</main>
+</body>
+</html>

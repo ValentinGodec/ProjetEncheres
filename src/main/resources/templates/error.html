@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- Mise en place du layout -->
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{layouts/layout :: layout-enchere( 
+					titrePage=~{:: title},
+					contenuPage=~{:: main},
+					ressourcesSupp=~{:: #ressources-css}
+					)}">
+<head>
+<meta charset="UTF-8">
+<title data-th-text="#{error.http.title}"></title>
+<!-- Ajout de CSS demo-form.css -->
+<th:block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/demo-error-http.css}" />
+	<link rel="stylesheet" data-th-href="@{/css/demo-error.css}" />
+</th:block>
+</head>
+<body>
+	<main>
+		<div data-th-if="${customError}">
+			<ul class="flex-outer cards">
+				<li>
+					<p data-th-text="${customError}"></p>
+				</li>
+				<li>
+					<a data-th-href="@{/}" data-th-text="#{error.http.button}"></a>
+				</li>
+			</ul>
+		</div>
+		<div data-th-unless="${customError}">
+			<h1 class="cards" data-th-text="#{error.http.h1} + ${(status ne null)?status:'Inconnu'}"></h1>
+			<form>
+				<ul class="flex-outer cards">
+					<li data-th-switch="${status}">
+						<label data-th-case="403" data-th-text="#{error.http.label.403}"></label>
+						<label data-th-case="404" data-th-text="#{error.http.label.404}"></label>
+						<label data-th-case="500" data-th-text="#{error.http.label.500}"></label>
+						<label data-th-case="*" data-th-text="#{error.http.label.other}"></label>
+					</li>
+					<li data-th-if="${customError ne null}">
+						<p data-th-text="${customError}"></p>
+					</li>
+					<li>
+						<a data-th-href="@{/}" data-th-text="#{error.http.button}"></a>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

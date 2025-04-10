@@ -1,0 +1,116 @@
+<form xmlns:th="http://www.thymeleaf.org" data-th-fragment="frag-profil-form(action)"
+	data-th-action="@{/profil/__${action}__}" data-th-object="${personne}" method="post" class="profil-form"
+	id="profil-form">
+
+	<h1 class="text-center" data-th-text="#{Profil.titreForm.__${action}__}"></h1>
+	<div data-th-replace="~{fragments/errors/fragment-errors :: frag-errors}"></div>
+
+	<div class="row justify-content-around form-inline py-2 mx-2">
+		<div class="col-3 d-none d-md-block py-2">
+			<label for="inputPseudo" data-th-text="#{Profil.pseudo.req}" class="w-100 text-center col-form-label"></label>
+		</div>
+		<div class="col-12 col-md-3 d-none d-md-block py-2">
+			<th:block data-th-if="${#strings.contains(action,'modifier')}">
+				<input type="text" id="inputPseudo" required readonly data-th-field="*{pseudo}"
+					class="form-control-plaintext col-sm-10 form-control" data-th-placeholder="#{Profil.pseudo.req}" />
+					<input type="hidden" id="inputCredit" data-th-field="*{credit}"/>
+					<input type="hidden" id="inputMotDePasse" data-th-field="*{motDePasse}"/>
+			</th:block>
+			<th:block data-th-if="${#strings.contains(action,'creer')}">
+				<input type="text" id="inputPseudo" required data-th-field="*{pseudo}" class="form-control"
+					data-th-placeholder="#{Profil.pseudo.req}" />
+				<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('pseudo')}"></div>
+			</th:block>
+		</div>
+
+		<div class="col-3 d-none d-md-block py-2">
+			<label for="inputNom" data-th-text="#{Profil.nom.req}" class="w-100 text-center col-form-label"></label>
+		</div>
+		<div class="col-12 col-md-3 py-2">
+			<input type="text" id="inputNom" required data-th-field="*{nom}" class="form-control"
+				data-th-placeholder="#{Profil.nom.req}" />
+			<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('nom')}"></div>
+		</div>
+
+		<div class="col-3 d-none d-md-block py-2">
+			<label for="inputPrenom" data-th-text="#{Profil.prenom.req}" class="w-100 text-center col-form-label"></label>
+		</div>
+		<div class="col-12 col-md-3 py-2">
+			<input type="text" id="inputPrenom" required data-th-field="*{prenom}" class="form-control"
+				data-th-placeholder="#{Profil.prenom.req}" />
+			<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('prenom')}"></div>
+		</div>
+
+		<div class="col-3 d-none d-md-block py-2">
+			<label for="inputTelephone" data-th-text="#{Profil.telephone}" class="w-100 text-center col-form-label"></label>
+		</div>
+		<div class="col-12 col-md-3 py-2">
+			<input type="text" id="inputTelephone" data-th-field="*{telephone}" class="form-control"
+				data-th-placeholder="#{Profil.telephone}" />
+			<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('telephone')}"></div>
+		</div>
+
+		<div class="col-3 d-none d-md-block py-2">
+			<label for="inputEmail" data-th-text="#{Profil.email.req}" class="w-100 text-center col-form-label"></label>
+		</div>
+		<div class="col-12 col-md-9 py-2">
+			<input type="text" id="inputEmail" required data-th-field="*{email}" class="form-control"
+				data-th-placeholder="#{Profil.email.req}" />
+			<th:block data-th-if="${#strings.contains(action,'creer')}">
+				<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('email')}"></div>
+			</th:block>
+		</div>
+
+		<div class="col-12 col-md-3 form-inline row justify-content-around py-2 mx-0">
+			<label for="inputAdresseRue" class="text-center">Adresse (*): </label>
+			<input type="hidden" id="inputAdresseNumero" data-th-field="*{adresse.noAdresse}"/> 
+		</div>
+		<div class="col-12 col-md-3 py-2">
+			<input class="form-control" type="text" id="inputAdresseRue" required data-th-field="*{adresse.rue}"
+				data-th-placeholder="#{Profil.adresse.rue.req}" />
+		</div>
+		<div class="col-12 col-md-3 py-2">
+			<input class="form-control" type="text" id="inputAdresseCodePostal" required data-th-field="*{adresse.codePostal}"
+				data-th-placeholder="#{Profil.adresse.codepostal.req}" />
+		</div>
+		<div class="col-12 col-md-3 py-2">
+			<input class="form-control" type="text" id="inputAdresseVille" required data-th-field="*{adresse.ville}"
+				data-th-placeholder="#{Profil.adresse.ville.req}" />
+		</div>
+
+		<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('adresse')}"></div>
+
+		<th:block data-th-if="${#strings.contains(action,'modifier')}">
+			<div class="col-6 col-md-3 py-2">
+				<label for="input" data-th-text="#{Profil.credit}" class="w-100 text-center col-form-label"></label>
+			</div>
+			<div class="col-6 col-md-9 py-2">
+				<span class="input-display" data-th-text="*{credit}"></span>
+			</div>
+		</th:block>
+		<th:block data-th-if="${#strings.contains(action,'creer')}">
+			<div data-th-replace="~{fragments/fragment-password :: frag-password(${action})}"></div>
+		</th:block>
+		<div class="col-12 col-md-3 py-2 text-center">
+			<button id="bouton-soumettre" class="btn btn-primary" type="submit" data-th-text="#{Profil.btn.__${action}__}"></button>
+		</div>
+		<th:block data-th-if="${#strings.contains(action,'modifier')}">
+			<div class="col-12 col-md-3 py-2 text-center">
+				<a id="bouton-modifier-password" class="btn btn-primary" type="button" 
+				data-th-text="#{Profil.btn.modifierMotDePasse}" data-th-href="@{/profil/modifier/password}"></a>
+			</div>
+			<div class="col-12 col-md-3 py-2 text-center">
+				<a  data-th-href="@{/profil/supprimer/utilisateur?utilisateurPseudo=__*{pseudo}__}"
+				  	class="btn btn-danger btn-sm py-1 "
+				  	th:data-confirm-delete="|#{Profil.supprimer.monCompte}?|"
+				  	onclick="return confirm(this.getAttribute('data-confirm-delete'))"
+					data-th-text="#{Profil.btn.supprimer}"></a>
+					<!--  onclick="return confirm(this.getAttribute('data-confirm-delete'))"-->				
+					<!--  onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false" -->				
+			</div>
+		</th:block>		
+		<div class="col-md-3 d-none d-md-block py-2 text-center">
+			<a id="btnRetour" class="btn btn-secondary" data-th-text="#{Profil.btn.annuler}" ></a>
+		</div>
+	</div>
+</form>

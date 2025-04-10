@@ -1,0 +1,62 @@
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 75vh;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+
+header {
+	padding: 5px;
+	background-color: rgb(110, 127, 146);
+	
+}
+
+h1 {
+	font-size: 1.8em;
+}
+
+footer {
+	background-color: rgb(110, 127, 146);
+	padding: 10px;
+	text-align: center;
+	color: white;
+	height: auto;
+}
+
+nav li {	
+	font-size: 1.5em;
+}
+
+.login-input {
+	width : 20vw;
+}
+
+@media screen and (min-width: 768px) {
+    /* For mobile display placeholder rather than label */
+    #profil-form ::-webkit-input-placeholder, 
+    #password-form ::-webkit-input-placeholder,
+    #login-form ::-webkit-input-placeholder
+     { /* WebKit browsers */
+        color: transparent;
+    }
+    #profil-form ::-moz-placeholder, 
+    #password-form ::-moz-placeholder,
+    #login-form ::-moz-placeholder
+     { /* Mozilla Firefox 4 to 18 */
+       color: transparent;
+    }
+    #profil-form :-moz-placeholder, 
+    #password-form :-moz-placeholder,
+    #login-form :-moz-placeholder
+     { /* Mozilla Firefox 19+ */
+       color: transparent;
+    }
+   	#profil-form :-ms-input-placeholder, 
+   	#password-form :-ms-input-placeholder,
+   	#login-form :-ms-input-placeholder
+   	 { /* Internet Explorer 10+ */
+       color: transparent;
+    }
+}
